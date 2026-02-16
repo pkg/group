@@ -52,9 +52,7 @@ func (g *G) init() {
 // passed to it is canceled.
 func (g *G) Add(fn func(context.Context) error) {
 	g.initOnce.Do(g.init)
-	g.done.Add(1)
-	go func() {
-		defer g.done.Done()
+	g.done.Go(func() {
 		defer g.cancel()
 		defer func() {
 			if r := recover(); r != nil {
@@ -70,7 +68,7 @@ func (g *G) Add(fn func(context.Context) error) {
 		if err := fn(g.ctx); err != nil {
 			g.errOnce.Do(func() { g.err = err })
 		}
-	}()
+	})
 }
 
 // wait waits for all goroutines in the group to exit. If any of the goroutines
