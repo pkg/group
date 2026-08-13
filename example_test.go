@@ -13,9 +13,7 @@ import (
 	"github.com/pkg/group"
 )
 
-type Group = group.G
-
-func ExampleGroup_Wait() {
+func ExampleG_Wait() {
 	// A Group's zero value is ready to use.
 	var g group.G
 
@@ -37,7 +35,7 @@ func ExampleGroup_Wait() {
 	// Output: timed out
 }
 
-func ExampleGroup_Wait_with_startup_error() {
+func ExampleG_Wait_with_startup_error() {
 	// A Group's zero value is ready to use.
 	var g group.G
 
@@ -54,7 +52,7 @@ func ExampleGroup_Wait_with_startup_error() {
 	// Output: startup error
 }
 
-func ExampleGroup_Wait_with_panic() {
+func ExampleG_Wait_with_panic() {
 	// A Group's zero value is ready to use.
 	var g group.G
 
@@ -71,7 +69,7 @@ func ExampleGroup_Wait_with_panic() {
 	// Output: panic: boom
 }
 
-func ExampleGroup_Wait_with_shutdown() {
+func ExampleG_Wait_with_shutdown() {
 	// A Group's zero value is ready to use.
 	var g group.G
 
@@ -99,7 +97,7 @@ func ExampleGroup_Wait_with_shutdown() {
 	// Output: shutdown
 }
 
-func ExampleGroup_Wait_with_context_cancel() {
+func ExampleG_Wait_with_context_cancel() {
 	ctx := context.Background()
 	ctx, cancel := context.WithDeadline(ctx, time.Now().Add(100*time.Millisecond))
 
@@ -125,7 +123,7 @@ func ExampleGroup_Wait_with_context_cancel() {
 	// Output: context canceled
 }
 
-func ExampleGroup_Wait_with_signal() {
+func ExampleG_Wait_with_signal() {
 	ctx := context.Background()
 	ctx, _ = signal.NotifyContext(ctx, os.Interrupt)
 
@@ -155,7 +153,7 @@ func ExampleGroup_Wait_with_signal() {
 	// context canceled
 }
 
-func ExampleGroup_Wait_with_http_shutdown() {
+func ExampleG_Wait_with_http_shutdown() {
 	ctx := context.Background()
 	ctx, cancel := context.WithDeadline(ctx, time.Now().Add(100*time.Millisecond))
 	defer cancel()
